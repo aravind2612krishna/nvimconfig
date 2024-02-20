@@ -1,10 +1,12 @@
 return {
-  { "wuelnerdotexe/vim-enfocado" },
+  -- { "wuelnerdotexe/vim-enfocado" },
+  -- { "catppuccin/nvim", name = "catppuccin", priority = 1000  },
+  { "nyoom-engineering/oxocarbon.nvim" },
 
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "enfocado",
+      colorscheme = "oxocarbon",
     },
   },
 }
