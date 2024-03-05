@@ -3,7 +3,7 @@
 -- Add any additional keymaps here
 
 -- most important
-vim.keymap.set({"i", "t"}, "jj", "<Esc>")
+vim.keymap.set({ "i", "t" }, "jj", "<Esc>")
 
 -- used in tmux
 -- vim.keymap.del({ "n", "i", "v" }, "<A-h>")
@@ -26,6 +26,9 @@ vim.keymap.set(
 vim.keymap.set("n", "<C-q>", vim.cmd.cclose, { desc = "Close quickfix" })
 vim.keymap.set("n", "<C-e>", function()
   local currwinid = vim.fn.win_getid()
-  vim.cmd( [[ topleft copen ]] ) -- open quickfix top left
+  vim.cmd([[ topleft copen ]]) -- open quickfix top left
   vim.fn.win_gotoid(currwinid) -- go back to previous window
 end, { desc = "Open quickfix and jump to it" })
+
+-- terminal
+vim.keymap.set("t", "jj", "<C-\\><C-n>", { desc = "Escape" })

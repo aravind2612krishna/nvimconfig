@@ -16,6 +16,7 @@ vim.opt.sessionoptions = { "buffers", "curdir", "tabpages" } -- store these in m
 vim.opt.clipboard = "unnamedplus" -- clipboard to vim yank
 vim.opt.shortmess:append("c")
 vim.opt.diffopt:append({ "algorithm:patience", "indent-heuristic", "iwhite", "vertical" })
+vim.opt.relativenumber = false
 
 vim.opt.virtualedit:append({ "block", "onemore" }) -- allow moving cursor past end of the line
 
@@ -68,9 +69,7 @@ vim.api.nvim_create_user_command("Dbg", function()
   vim.keymap.set("n", "<leader>gc", function()
     vim.cmd("Continue")
   end, { desc = "Continue" })
-  vim.keymap.set("n", "<CR>", function()
-    vim.cmd("Over")
-  end, { desc = "Step over" })
+  vim.keymap.set("n", "<CR>", "<cmd>Over<CR>", { desc = "Step over" })
   vim.keymap.set("n", "<leader>gk", function()
     vim.fn.TermDebugSendCommand("up")
   end, { desc = "Up" })
@@ -78,9 +77,7 @@ vim.api.nvim_create_user_command("Dbg", function()
     vim.fn.TermDebugSendCommand("down")
   end, { desc = "Down" })
   vim.keymap.set("n", "<leader>]", "<cmd>Step<CR>", { desc = "Step into" })
-  vim.keymap.set("n", "<leader>[", function()
-    vim.cmd("Finish")
-  end, { desc = "Step out of" })
+  vim.keymap.set("n", "<leader>[", "<cmd>Finish<CR>", { desc = "Step out of" })
   --"<cmd>call TermDebugSendCommand('p ' . expand("<cword>"))<CR>")
   vim.keymap.set("n", "<leader>k", function()
     local dbgcmd = "p " .. vim.fn.expand("<cexpr>")
@@ -92,6 +89,7 @@ vim.api.nvim_create_user_command("Dbg", function()
   vim.keymap.set("n", "<leader>ga", function()
     vim.fn.TermDebugSendCommand("pattach hwx")
   end, { desc = "attach to recent hwx" })
+  vim.keymap.set("n", "<leader>gb", "<cmd>Break<CR>", { desc = "Add a breakpoint" })
 end, { desc = "Start termdebug gdb" })
 
 if vim.g.neovide ~= nil then

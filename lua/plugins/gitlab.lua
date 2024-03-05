@@ -10,7 +10,18 @@ return {
   build = function()
     require("gitlab.server").build(true)
   end, -- Builds the Go binary
-  opts = { debug = { go_request = true, go_response = true } },
+  opts = {
+    debug = { go_request = true, go_response = true },
+    reviewer_settings = {
+      diffview = {
+        imply_local = true,
+      },
+    },
+    discussion_sign_and_diagnostic = {
+      skip_resolved_discussion = true,
+      skip_old_revision_discussion = false,
+    },
+  },
   config = function(_, opts)
     require("gitlab").setup(opts)
     vim.keymap.set("n", "gls", require("gitlab").summary, { desc = "Gitlab summary" })
@@ -18,8 +29,18 @@ return {
     vim.keymap.set("n", "glR", require("gitlab").revoke, { desc = "Gitlab revoke" })
     vim.keymap.set("n", "glc", require("gitlab").create_comment, { desc = "Gitlab create_comment" })
     vim.keymap.set("v", "glc", require("gitlab").create_multiline_comment, { desc = "Gitlab create_multiline_comment" })
-    vim.keymap.set("v", "glC", require("gitlab").create_comment_suggestion, { desc = "Gitlab create_comment_suggestion" })
-    vim.keymap.set("n", "glm", require("gitlab").move_to_discussion_tree_from_diagnostic, { desc = "Gitlab move_to_discussion_tree_from_diagnostic" })
+    vim.keymap.set(
+      "v",
+      "glC",
+      require("gitlab").create_comment_suggestion,
+      { desc = "Gitlab create_comment_suggestion" }
+    )
+    vim.keymap.set(
+      "n",
+      "glm",
+      require("gitlab").move_to_discussion_tree_from_diagnostic,
+      { desc = "Gitlab move_to_discussion_tree_from_diagnostic" }
+    )
     vim.keymap.set("n", "gln", require("gitlab").create_note, { desc = "Gitlab create_note" })
     vim.keymap.set("n", "gld", require("gitlab").toggle_discussions, { desc = "Gitlab toggle_discussions" })
     vim.keymap.set("n", "glaa", require("gitlab").add_assignee, { desc = "Gitlab add_assignee" })
@@ -30,6 +51,13 @@ return {
     vim.keymap.set("n", "glo", require("gitlab").open_in_browser, { desc = "Gitlab open_in_browser" })
   end,
   keys = {
-    { "glr", function() require('gitlab').review() end, mode="n", desc="Open review" },
+    {
+      "glr",
+      function()
+        require("gitlab").review()
+      end,
+      mode = "n",
+      desc = "Open review",
+    },
   },
 }

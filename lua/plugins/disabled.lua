@@ -9,5 +9,6 @@ return {
   { "echasnovski/mini.pairs", enabled = false },
   { "echasnovski/mini.animate", enabled = false },
   { "RRethy/vim-illuminate", enabled = false },
+  { "folke/todo-comments.nvim", enabled = false },
   -- { "echasnovski/mini.indentscope", enabled = false },
 }
