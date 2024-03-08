@@ -33,5 +33,9 @@ return {
       --       'impl_item',
       --   },
     },
+    config = function(_, opts)
+        require'treesitter-context'.setup(opts)
+        vim.cmd[[hi! link TreesitterContextBottom underlined]]
+    end
   },
 }
