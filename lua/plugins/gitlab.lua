@@ -14,7 +14,7 @@ return {
     debug = { go_request = true, go_response = true },
     reviewer_settings = {
       diffview = {
-        imply_local = false,
+        imply_local = true,
       },
     },
     discussion_sign_and_diagnostic = {

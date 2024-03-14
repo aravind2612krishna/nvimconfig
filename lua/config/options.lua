@@ -18,7 +18,7 @@ vim.opt.clipboard = "unnamedplus" -- clipboard to vim yank
 vim.opt.shortmess:append("c")
 vim.opt.diffopt:append({ "algorithm:patience", "indent-heuristic", "iwhite", "vertical" })
 vim.opt.relativenumber = false
-vim.opt.splitkeep= "cursor"
+vim.opt.splitkeep = "cursor"
 
 vim.opt.virtualedit:append({ "block", "onemore" }) -- allow moving cursor past end of the line
 
@@ -26,6 +26,8 @@ vim.opt.virtualedit:append({ "block", "onemore" }) -- allow moving cursor past e
 vim.api.nvim_create_user_command("HtmlClip", function(args)
   local saved_html_use_css = vim.g.html_use_css
   local saved_html_no_progress = vim.g.html_no_progress
+  local relFName = vim.fn.fnamemodify(vim.fn.expand("%"), ":.")
+  local fromFNameTxt = "from <code>" .. relFName .. "</code><br>"
   vim.g.html_use_css = false
   vim.g.html_ignore_folding = true
   vim.g.html_no_progress = true
@@ -36,14 +38,14 @@ vim.api.nvim_create_user_command("HtmlClip", function(args)
   vim.g.html_use_css = saved_html_use_css
   vim.g.html_no_progress = saved_html_no_progress
 
-  local lno = vim.fn.search("^<body", 'nw')
+  local lno = vim.fn.search("^<body", "nw")
   local bufnr = vim.api.nvim_get_current_buf()
-  local textToInsert = "File : <code>" .. vim.fn.getreg('#') .. "<br> </code> <pre>"
-  vim.api.nvim_buf_set_lines(bufnr, lno, lno, false, {textToInsert})
+  -- local textToInsert = "<pre>"
+  -- vim.api.nvim_buf_set_lines(bufnr, lno, lno, false, {textToInsert})
 
-  lno = vim.fn.search("^</body", 'nw')
-  textToInsert = "</pre>"
-  vim.api.nvim_buf_set_lines(bufnr, lno-1, lno-1, false, {textToInsert})
+  lno = vim.fn.search("^</body", "nw")
+  -- textToInsert = "</pre> from <code>" .. vim.fn.getreg('#') .. "<br> </code> "
+  vim.api.nvim_buf_set_lines(bufnr, lno - 1, lno - 1, false, { fromFNameTxt })
 
   vim.cmd("w !xclip -selection clipboard -t text/html -i")
   vim.cmd.bwipeout({ bang = true })

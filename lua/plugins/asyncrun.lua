@@ -4,7 +4,7 @@ return {
   cmd = { "AsyncRun" },
   keys = {
     {
-      "<leader>r",
+      "<leader>rr",
       function()
         local bufnr = vim.api.nvim_get_current_buf()
         local cmd = "AsyncRun ug -RniI " .. vim.fn.expand("<cword>") .. " " .. vim.fn.expand("%:.:h")
