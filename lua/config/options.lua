@@ -100,6 +100,9 @@ vim.api.nvim_create_user_command("Dbg", function()
     vim.fn.TermDebugSendCommand("pattach hwx")
   end, { desc = "attach to recent hwx" })
   vim.keymap.set("n", "<leader>gb", "<cmd>Break<CR>", { desc = "Add a breakpoint" })
+  vim.keymap.set("n", "<leader>ge", function()
+    vim.fn.TermDebugSendCommand("extractStarCommandsFromLastOutput")
+  end, { desc = "Run extractStarCommandsFromLastOutput" })
 end, { desc = "Start termdebug gdb" })
 
 if vim.g.neovide ~= nil then
