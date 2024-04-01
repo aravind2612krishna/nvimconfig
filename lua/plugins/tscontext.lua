@@ -7,7 +7,7 @@ return {
     multiline_threshold = 1, -- Maximum number of lines to show for a single context
     trim_scope = "inner", -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
     mode = "topline", -- Line used to calculate context. Choices: 'cursor', 'topline'
-    separator = nil,
+    separator = nil, -- "─",
     patterns = { -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
       -- For all filetypes
       -- Note that setting an entry here replaces all other patterns for this entry.
@@ -34,8 +34,10 @@ return {
       --   },
     },
     config = function(_, opts)
-        require'treesitter-context'.setup(opts)
-        vim.cmd[[hi! link TreesitterContextBottom underlined]]
-    end
+      -- vim.cmd[[hi! link TreesitterContextBottom underlined]]
+      require("treesitter-context").setup(opts)
+      vim.cmd[[hi! TreesitterContextBottom gui=underline guisp=Grey]]
+      vim.cmd[[hi! TreesitterContextLineNumberBottom gui=underline guisp=Grey]]
+    end,
   },
 }

@@ -3,8 +3,8 @@ return {
   opts = {
     indent = { enable = false },
     highlight = {
-      disable = function(lang, bufnr) -- Disable in large C++ bufs
-        return lang == "cpp" and vim.api.nvim_buf_line_count(bufnr) > 3000
+      disable = function(_, bufnr) -- Disable in large C++ bufs
+        return vim.api.nvim_buf_line_count(bufnr) > 3000
       end,
     },
   },

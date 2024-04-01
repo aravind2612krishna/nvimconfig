@@ -10,8 +10,11 @@ return {
   { "echasnovski/mini.animate", enabled = false },
   { "RRethy/vim-illuminate", enabled = false },
   { "folke/todo-comments.nvim", enabled = false },
-  -- { "echasnovski/mini.indentscope", enabled = false },
+  { "echasnovski/mini.indentscope", enabled = false },
   -- { "nvim-treesitter/nvim-treesitter-context", enabled = false },
-  -- { "Bekaboo/dropbar.nvim", enabled = false },
+  { "Bekaboo/dropbar.nvim", enabled = false },
   { "lukas-reineke/indent-blankline.nvim", enabled = false },
+  -- { "hrsh7th/nvim-cmp", enabled = false },
+  { "ms-jpq/coq_nvim", enabled = false },
+  { "ray-x/lsp_signature.nvim", enabled = false },
 }

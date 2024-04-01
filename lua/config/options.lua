@@ -27,7 +27,7 @@ vim.api.nvim_create_user_command("HtmlClip", function(args)
   local saved_html_use_css = vim.g.html_use_css
   local saved_html_no_progress = vim.g.html_no_progress
   local relFName = vim.fn.fnamemodify(vim.fn.expand("%"), ":.")
-  local fromFNameTxt = "from <code>" .. relFName .. "</code><br>"
+  local fromFNameTxt = "</pre><hr>from <code>" .. relFName .. "</code><hr><br>"
   vim.g.html_use_css = false
   vim.g.html_ignore_folding = true
   vim.g.html_no_progress = true
@@ -41,7 +41,8 @@ vim.api.nvim_create_user_command("HtmlClip", function(args)
   local lno = vim.fn.search("^<body", "nw")
   local bufnr = vim.api.nvim_get_current_buf()
   -- local textToInsert = "<pre>"
-  -- vim.api.nvim_buf_set_lines(bufnr, lno, lno, false, {textToInsert})
+  local textToInsert = "<hr><pre>"
+  vim.api.nvim_buf_set_lines(bufnr, lno, lno, false, {textToInsert})
 
   lno = vim.fn.search("^</body", "nw")
   -- textToInsert = "</pre> from <code>" .. vim.fn.getreg('#') .. "<br> </code> "
@@ -56,15 +57,21 @@ end, {
 -- TermDebug
 vim.api.nvim_create_user_command("Dbg", function()
   vim.cmd.packadd("termdebug")
+  vim.g.termdebug_wide = 1
   vim.cmd("Termdebug")
+  vim.cmd('wincmd k')
+  vim.api.nvim_win_close(0, false)
+  vim.cmd('wincmd H')
+  vim.cmd('wincmd l')
 
-  vim.cmd("hi debugPC term=reverse ctermbg=darkgrey guibg=darkblue")
-  vim.cmd("hi debugBreakpoint term=reverse ctermbg=blue guibg=red")
   if not vim.g["termdebug_config"] then
     vim.g.termdebug_config = {}
   end
   vim.g.termdebug_config["map_K"] = 0
-  vim.g.termdebug_wide = 163
+
+  vim.cmd("hi debugPC term=reverse ctermbg=darkgrey guibg=darkblue")
+  vim.cmd("hi debugBreakpoint term=reverse ctermbg=blue guibg=red")
+
 
   vim.keymap.set("n", "<leader>gu", function()
     local lno = vim.fn.line(".")
