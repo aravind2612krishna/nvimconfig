@@ -17,4 +17,5 @@ return {
   -- { "hrsh7th/nvim-cmp", enabled = false },
   { "ms-jpq/coq_nvim", enabled = false },
   { "ray-x/lsp_signature.nvim", enabled = false },
+  { "bufferline.nvim", enabled = false},
 }

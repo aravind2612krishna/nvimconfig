@@ -12,7 +12,7 @@ return {
       keymap = {
         recommended = true,
         pre_select = true,
-        jump_to_mark = "\\",
+        jump_to_mark = "<C-Tab>",
       },
       display = {
         mark_highlight_group = "Folded",
@@ -20,6 +20,11 @@ return {
         ["ghost_text.context"] = {"", ""},
       },
       auto_start = "shut-up",
+      clients = {
+          tree_sitter = {
+              enabled = false,
+          },
+      },
     }
   end,
   config = function()

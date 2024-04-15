@@ -8,6 +8,7 @@ vim.opt.expandtab = true -- expand tabs to spaces
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.complete = { ".", "w", "b" } -- auto complete from current buffer and open windows by default
+vim.opt.completeopt = { "menu", "menuone", "noinsert", "menuone" }
 vim.opt.lazyredraw = true
 
 vim.opt.cindent = true
