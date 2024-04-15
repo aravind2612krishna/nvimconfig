@@ -15,7 +15,7 @@ vim.opt.cindent = true
 vim.opt.cino = { "t0", ":0", "(0", "N-s" }
 
 vim.opt.sessionoptions = { "buffers", "curdir", "tabpages" } -- store these in mksession
--- vim.opt.clipboard = "unnamedplus" -- clipboard to vim yank
+vim.opt.clipboard = "unnamedplus" -- clipboard to vim yank
 vim.opt.shortmess:append("c")
 vim.opt.diffopt:append({ "algorithm:patience", "indent-heuristic", "iwhite", "vertical" })
 vim.opt.relativenumber = false
@@ -43,7 +43,7 @@ vim.api.nvim_create_user_command("HtmlClip", function(args)
   local bufnr = vim.api.nvim_get_current_buf()
   -- local textToInsert = "<pre>"
   local textToInsert = "<hr><pre>"
-  vim.api.nvim_buf_set_lines(bufnr, lno, lno, false, { textToInsert })
+  vim.api.nvim_buf_set_lines(bufnr, lno, lno, false, {textToInsert})
 
   lno = vim.fn.search("^</body", "nw")
   -- textToInsert = "</pre> from <code>" .. vim.fn.getreg('#') .. "<br> </code> "
@@ -60,10 +60,10 @@ vim.api.nvim_create_user_command("Dbg", function()
   vim.cmd.packadd("termdebug")
   vim.g.termdebug_wide = 1
   vim.cmd("Termdebug")
-  vim.cmd("wincmd k")
+  vim.cmd('wincmd k')
   vim.api.nvim_win_close(0, false)
-  vim.cmd("wincmd H")
-  vim.cmd("wincmd l")
+  vim.cmd('wincmd H')
+  vim.cmd('wincmd l')
 
   if not vim.g["termdebug_config"] then
     vim.g.termdebug_config = {}
@@ -72,6 +72,7 @@ vim.api.nvim_create_user_command("Dbg", function()
 
   vim.cmd("hi debugPC term=reverse ctermbg=darkgrey guibg=darkblue")
   vim.cmd("hi debugBreakpoint term=reverse ctermbg=blue guibg=red")
+
 
   vim.keymap.set("n", "<leader>gu", function()
     local lno = vim.fn.line(".")
