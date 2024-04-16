@@ -12,7 +12,7 @@ return {
       keymap = {
         recommended = true,
         pre_select = true,
-        jump_to_mark = "<C-Tab>",
+        jump_to_mark = "\\\\",
       },
       display = {
         mark_highlight_group = "Folded",
