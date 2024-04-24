@@ -21,6 +21,9 @@ return {
       },
       auto_start = "shut-up",
       clients = {
+          lsp = {
+              weight_adjust = 2,
+          },
           tree_sitter = {
               enabled = false,
           },

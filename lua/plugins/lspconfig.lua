@@ -29,9 +29,11 @@ return {
             "--background-index",
             "-j=4",
             "--clang-tidy",
+            "--enable-config",
             "--header-insertion=never",
             "--completion-style=detailed",
             "--function-arg-placeholders",
+            "--include-ineligible-results",
           },
           init_options = {
             usePlaceholders = true,
@@ -48,5 +50,18 @@ return {
         end,
       },
     },
+    init = function()
+      local keys = require("lazyvim.plugins.lsp.keymaps").get()
+      -- change a keymap
+      keys[#keys + 1] = {
+        "gd",
+        function()
+          require("telescope.builtin").lsp_definitions({ reuse_win = false })
+        end,
+        desc = "Goto Definition",
+        has = "definition",
+      }
+      local config = require("lazyvim.plugins.lsp.keymaps").get()
+    end,
   },
 }

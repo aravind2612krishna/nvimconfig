@@ -3,6 +3,7 @@
 -- Add any additional options here
 
 vim.g.autoformat = false
+vim.opt.foldmethod = "marker"
 vim.opt.fdo:append("jump") -- open folds on jump
 vim.opt.expandtab = true -- expand tabs to spaces
 vim.opt.shiftwidth = 4
