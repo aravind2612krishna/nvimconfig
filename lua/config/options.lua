@@ -23,6 +23,8 @@ vim.opt.relativenumber = false
 vim.opt.splitkeep = "cursor"
 
 vim.opt.virtualedit:append({ "block", "onemore" }) -- allow moving cursor past end of the line
+vim.opt.colorcolumn = "+2"
+vim.opt.textwidth = 80
 
 -- advanced
 vim.api.nvim_create_user_command("HtmlClip", function(args)

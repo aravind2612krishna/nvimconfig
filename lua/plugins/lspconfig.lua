@@ -4,6 +4,36 @@ return {
     opts = {
       servers = {
         -- Ensure mason installs the server
+        -- ccls = {
+        --   mason = false,
+        --   root_dir = function(fname)
+        --     return require("lspconfig.util").root_pattern(
+        --       "Makefile",
+        --       "configure.ac",
+        --       "configure.in",
+        --       "config.h.in",
+        --       "meson.build",
+        --       "meson_options.txt",
+        --       "build.ninja"
+        --     )(fname) or require("lspconfig.util").root_pattern("compile_commands.json", "compile_flags.txt")(
+        --       fname
+        --     ) or require("lspconfig.util").find_git_ancestor(fname)
+        --   end,
+        --   cmd = {
+        --     "/home/aravk/sources/ccls/ccls/Release/ccls",
+        --     "--log-file=ccls.log",
+        --     "--log-file-append",
+        --   },
+        --   init_options = {
+        --     -- compilationDatabaseDirectory = ".",
+        --     index = {
+        --       threads = 6,
+        --     },
+        --     clang = {
+        --       excludeArgs = { "-frounding-math" },
+        --     },
+        --   },
+        -- },
         clangd = {
           keys = {
             { "<leader>cR", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Switch Source/Header (C/C++)" },

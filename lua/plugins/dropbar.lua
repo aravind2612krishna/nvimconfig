@@ -5,6 +5,24 @@ return {
     "nvim-telescope/telescope-fzf-native.nvim",
   },
   opts = {
+    general = {
+      enable = function(buf, win)
+        return vim.fn.win_gettype(win) == ""
+          and vim.wo[win].winbar == ""
+          and vim.bo[buf].bt == ""
+          and vim.api.nvim_get_option_value("diff", {}) == false
+          and (
+            vim.bo[buf].ft == "markdown"
+            or (
+              buf
+                and vim.api.nvim_buf_is_valid(buf)
+                and (pcall(vim.treesitter.get_parser, buf, vim.bo[buf].ft))
+                and true
+              or false
+            )
+          )
+      end,
+    },
     sources = {
       treesitter = {
         valid_types = {
