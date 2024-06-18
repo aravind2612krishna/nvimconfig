@@ -1,7 +1,6 @@
 return {
   "nvim-treesitter/nvim-treesitter-context",
   opts = {
-    enable = false, -- Enable this plugin (Can be enabled/disabled later via commands)
     throttle = true, -- Throttles plugin updates (may improve performance)
     max_lines = 4, -- How many lines the window should span. Values <= 0 mean no limit.
     multiline_threshold = 1, -- Maximum number of lines to show for a single context

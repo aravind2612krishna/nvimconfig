@@ -15,6 +15,14 @@ return {
         "<cmd>DapLoadLaunchJSON<CR>",
         desc = "Load launch.json",
       },
+      {
+          "<leader>de",
+          function()
+              require("dap").set_exception_breakpoints({ "Warning", "Error", "Exception" })
+          end,
+          mode = "n",
+          desc = "Stop on exceptions"
+      },
     },
     config = function()
       local Config = require("lazyvim.config")

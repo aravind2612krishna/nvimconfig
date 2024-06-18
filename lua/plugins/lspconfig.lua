@@ -72,11 +72,19 @@ return {
           },
         },
       },
+      inlay_hints = { enabled = false },
       setup = {
         clangd = function(_, opts)
           local clangd_ext_opts = require("lazyvim.util").opts("clangd_extensions.nvim")
-          require("clangd_extensions").setup(vim.tbl_deep_extend("force", clangd_ext_opts or {}, { server = opts }))
-          return false
+          if clangd_ext_opts ~= nil then
+              local coq = require("coq")
+              if coq ~= nil then
+                  require("clangd_extensions").setup(vim.tbl_deep_extend("force", clangd_ext_opts or {}, { server = coq.lsp_ensure_capabilities(opts) }))
+              else
+                  require("clangd_extensions").setup(vim.tbl_deep_extend("force", clangd_ext_opts or {}, { server = opts }))
+              end
+              return false
+          end
         end,
       },
     },

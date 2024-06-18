@@ -3,7 +3,8 @@
 -- Add any additional keymaps here
 
 -- most important
-vim.keymap.set({ "i", "t" }, "jj", "<Esc>")
+vim.keymap.set({ "i" }, "jj", "<Esc>")
+-- vim.keymap.del({ "t" }, "jj")
 
 -- used in tmux
 -- vim.keymap.del({ "n", "i", "v" }, "<A-h>")
