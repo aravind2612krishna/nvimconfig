@@ -120,13 +120,14 @@ if vim.g.neovide ~= nil then
   vim.g.neovide_cursor_antialiasing = false
   vim.g.neovide_fullscreen = true
   vim.g.neovide_remember_window_size = true
-  vim.keymap("n", "<M-Enter>", function()
+  vim.keymap.set("n", "<M-Enter>", function()
     if vim.g.neovide_fullscreen ~= nil and vim.g.neovide_fullscreen then
       vim.g.neovide_fullscreen = true
     else
       vim.g.neovide_fullscreen = false
     end
   end, { desc = "Toggle fullscreen in neovide" })
+  vim.o.guifont="Pragmasevka Nerd Font:h12:#e-subpixelantialias"
 end
 
 -- macros
